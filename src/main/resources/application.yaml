@@ -1,0 +1,24 @@
+server: 8080
+
+spring:
+    datasource:
+      url: "jdbc:postgresql://localhost:5432/postgres"
+      username: "acer"
+      password: "pass"
+
+    jpa:
+      generateDdl: "true"
+      hibernate:
+        ddlAuto: "create"
+      showSql: "true"
+      databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"
+
+    servlet:
+      multipart:
+        maxFileSize: "104857600"
+        maxRequestSize: "104857600"
+
+jwt:
+  signingKey: "ymLTU8rq83j4fmJZj60wh4OrMNuntIj4fmJ"
+
+  
