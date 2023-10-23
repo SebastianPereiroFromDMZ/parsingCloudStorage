@@ -21,7 +21,15 @@ import ru.netology.services.UserDetailsServiceImpl;
 
 import java.util.List;
 
+/**
+ * @Configuration – это аннотация на уровне класса, указывающая на то, что объект является источником определений бина.
+ * Классы, аннотированные @Configuration, объявляют бины через методы, аннотированные @Bean.
+ * Вызовы методов @Bean для классов @Configuration также могут быть использованы для определения межбиновых зависимостей.
+ */
 @Configuration
+/**
+ * @EnableWebSecurity включает Spring Security в нашем проэкте
+ */
 @EnableWebSecurity
 public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
@@ -34,11 +42,22 @@ public class SecurityConfig {
         this.jwtTokenFilter = jwtTokenFilter;
     }
 
+    /**
+     * Общедоступный интерфейс PasswordEncoder
+     * Сервисный интерфейс для шифрования паролей. Предпочтительной реализацией является BCryptPasswordEncoder.
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * DaoAuthenticationProvider— это AuthenticationProvider реализация, которая использует UserDetailsService и PasswordEncoder для
+     * аутентификации имени пользователя и пароля.
+     * <p>
+     * Публичный класс DaoAuthenticationProvider  расширяет AbstractUserDetailsAuthenticationProvider
+     * Реализация AuthenticationProvider, которая извлекает данные пользователя из файла UserDetailsService
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -47,11 +66,20 @@ public class SecurityConfig {
         return authProvider;
     }
 
+    /**
+     * Общедоступный интерфейс AuthenticationManager Обрабатывает Authentication запрос.
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
+
+    /**
+     * Общедоступный интерфейс SecurityFilterChain
+     * Определяет цепочку фильтров, которую можно сопоставить с файлом HttpServletRequest. чтобы решить, применимо ли это к этому запросу.
+     * Используется для настройки FilterChainProxy.
+     */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();

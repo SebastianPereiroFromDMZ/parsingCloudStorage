@@ -2,16 +2,20 @@ server: 8080
 
 spring:
     datasource:
-      url: "jdbc:postgresql://localhost:5432/postgres"
-      username: "acer"
-      password: "pass"
+      url: "jdbc:postgresql://localhost:5432/db_first"
+      username: "postgres"
+      password: "123"
+      driver-class-name: "org.postgresql.Driver"
 
     jpa:
       generateDdl: "true"
       hibernate:
-        ddlAuto: "create"
+        ddlAuto: "update"
       showSql: "true"
       databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"
+      properties:
+        hibernate:
+          defaultSchema: "netology"
 
     servlet:
       multipart:
