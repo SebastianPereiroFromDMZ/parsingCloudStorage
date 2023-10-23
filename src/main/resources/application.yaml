@@ -1,8 +1,10 @@
-server: 8080
+server:
+  port: 8081
+
 
 spring:
     datasource:
-      url: "jdbc:postgresql://localhost:5432/db_first"
+      url: "jdbc:postgresql://localhost:5432/db_1"
       username: "postgres"
       password: "123"
       driver-class-name: "org.postgresql.Driver"
@@ -15,7 +17,7 @@ spring:
       databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"
       properties:
         hibernate:
-          defaultSchema: "netology"
+          default_schema: "netology"
 
     servlet:
       multipart:
