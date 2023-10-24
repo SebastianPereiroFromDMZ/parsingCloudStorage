@@ -79,11 +79,27 @@ public class SecurityConfig {
      * Общедоступный интерфейс SecurityFilterChain
      * Определяет цепочку фильтров, которую можно сопоставить с файлом HttpServletRequest. чтобы решить, применимо ли это к этому запросу.
      * Используется для настройки FilterChainProxy.
+     * Подробнее в статье от JavaRush ссылка в файле links
+     * <p>
+     * <p>
+     * Ппубличный конечный класс HttpSecurity
+     * расширяет AbstractConfiguredSecurityBuilder < DefaultSecurityFilterChain , HttpSecurity >
+     * реализует SecurityBuilder < DefaultSecurityFilterChain >, HttpSecurityBuilder < HttpSecurity >
+     * A HttpSecurity аналогичен элементу XML <http> Spring Security в конфигурации пространства имен.
+     * Он позволяет настраивать веб-безопасность для определенных HTTP-запросов. По умолчанию оно будет применяться ко всем запросам,
+     * но его можно ограничить с помощью #requestMatcher(RequestMatcher)других подобных методов
      */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //cors совместное использование ресурсов между разными источниками
+        //csrf подделка межсайтовых запросов
+        //отключаем эти два фильтра
         http.cors().and().csrf().disable();
+        //addFilterBefore() позволяет добавить Filter перед одним из известных Filter классов.
+        // Известные Filter экземпляры либо Filter указаны в списке HttpSecurityBuilder.addFilter(Filter),
+        // либо Filter уже добавлены с помощью HttpSecurityBuilder.addFilterAfter(Filter, Class)или HttpSecurityBuilder.addFilterBefore(Filter, Class).
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        //authenticationProvider() позволяет добавить дополнительный AuthenticationProvider для использования
         http.authenticationProvider(authenticationProvider());
         http
                 .authorizeRequests().mvcMatchers("/login").permitAll()
