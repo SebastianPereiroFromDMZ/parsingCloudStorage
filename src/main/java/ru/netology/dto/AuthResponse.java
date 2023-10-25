@@ -10,6 +10,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthResponse {
 
+    /**
+     * @JsonProperty(name) сообщает Jackson ObjectMapper сопоставить имя свойства JSON с именем аннотированного поля Java.
+     *
+     * //example of json that is submitted
+     * "Car":{
+     *   "Type":"Ferrari",
+     * }
+     *
+     * //where it gets mapped
+     * public static class Car {
+     *   @JsonProperty("Type")
+     *   public String type;
+     *  }
+     */
+
     @JsonProperty("auth-token")
     private String authToken;
 }

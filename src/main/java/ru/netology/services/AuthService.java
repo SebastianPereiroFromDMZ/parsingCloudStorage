@@ -26,7 +26,7 @@ public class AuthService {
 
     public String loginUser(AuthRequest authRequest) {
         try {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword()));
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getLogin(),authRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtTokenUtils.generateToken(authentication);
             tokenStore.put(token, authRequest.getLogin());

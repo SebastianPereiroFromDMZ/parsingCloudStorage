@@ -103,7 +103,7 @@ public class SecurityConfig {
         http.authenticationProvider(authenticationProvider());
         http
                 //authorizeRequests() Позволяет ограничить доступ на основе HttpServletRequest используемых
-                // RequestMatcher реализаций (т. е. с помощью шаблонов URL-адресов). Устарело.
+                //RequestMatcher реализаций (т. е. с помощью шаблонов URL-адресов). Устарело.
                 //Будет удален в  7.0. Вместо этого используйте authorizeHttpRequests()
                 .authorizeRequests().mvcMatchers("/login").permitAll()
                 .anyRequest().authenticated()
