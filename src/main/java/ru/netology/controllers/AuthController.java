@@ -29,6 +29,9 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
+    //@RequestHeader: Аннотация, указывающая, что параметр метода должен быть привязан к заголовку веб-запроса.
+    //Поддерживается для аннотированных методов-обработчиков в Spring MVC и Spring WebFlux.
+    //Если параметр метода — Map<String, String>, MultiValueMap<String, String> или HttpHeaders, то карта заполняется всеми именами и значениями заголовков.
     public ResponseEntity<?> logout(@RequestHeader("auth-token") String token) {
         authService.logoutUser(token);
         return ResponseEntity.ok(HttpStatus.OK);
