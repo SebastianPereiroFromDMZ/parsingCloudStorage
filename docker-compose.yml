@@ -4,19 +4,20 @@ services:
     build:
       context: .
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - database
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
-      SPRING_DATASOURCE_USERNAME: acer
-      SPRING_DATASOURCE_PASSWORD: pass
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/db_first
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123
 
   database:
     image: postgres
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: acer
-      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db_first
+      POSTGRES_DEFAULT_SCHEMA: netology
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123

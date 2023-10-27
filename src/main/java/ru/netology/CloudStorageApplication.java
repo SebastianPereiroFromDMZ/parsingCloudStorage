@@ -22,17 +22,17 @@ public class CloudStorageApplication {
      * Интерфейс, используемый для указания того, что компонент должен запускаться , если он содержится в файле SpringApplication.
      * Несколько CommandLineRunner bean-компонентов могут быть определены в одном контексте приложения
      * и упорядочены с помощью Ordered интерфейса или @Order аннотации.
-     *
+     * <p>
      * CommandLineRunner - это функциональный интерфейс Spring Boot, который используется для запуска кода при запуске приложения.
      * Он находится в пакете org.springframework.boot.
-     *
+     * <p>
      * В процессе запуска после инициализации контекста Spring boot вызывает свой метод run() с аргументами командной строки, предоставленными приложению.
-     *
+     * <p>
      * Чтобы сообщить Spring Boot о нашем интерфейсе commandlineRunner, мы можем либо реализовать его и добавить аннотацию @Component над классом,
      * либо создать его bean-компонент с помощью @bean.
      */
-//    @Bean
-//    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
-//        return args -> users.save(new User("user", encoder.encode("password"), "USER"));
-    //}
+    @Bean
+    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
+        return args -> users.save(new User("user", encoder.encode("password"), "USER"));
+    }
 }
