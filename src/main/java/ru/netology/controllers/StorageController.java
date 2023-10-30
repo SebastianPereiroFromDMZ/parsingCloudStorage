@@ -24,6 +24,7 @@ public class StorageController {
     }
 
     @GetMapping("/list")
+    //@RequestHeader иногда вам требуется получить в качестве параметров вашего метода в контроллере непосредственно заголовки HTTP-запроса.
     public ResponseEntity<List<FileResponse>> getAllFiles(@RequestHeader("auth-token") String authToken,
                                                           @RequestParam("limit") int limit) {
         return ResponseEntity.ok(storageService.getFiles(authToken, limit));

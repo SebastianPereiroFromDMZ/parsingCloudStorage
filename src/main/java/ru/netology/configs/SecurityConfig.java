@@ -55,6 +55,8 @@ public class SecurityConfig {
      * DaoAuthenticationProvider— это AuthenticationProvider реализация, которая использует UserDetailsService и PasswordEncoder для
      * аутентификации имени пользователя и пароля.
      * <p>
+     * Реализация AuthenticationProvider, которая получает сведения о пользователе из UserDetailsService.
+     * <p>
      * Публичный класс DaoAuthenticationProvider  расширяет AbstractUserDetailsAuthenticationProvider
      * Реализация AuthenticationProvider, которая извлекает данные пользователя из файла UserDetailsService
      */

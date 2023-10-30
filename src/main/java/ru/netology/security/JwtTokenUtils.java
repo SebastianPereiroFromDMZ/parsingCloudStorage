@@ -90,6 +90,12 @@ public class JwtTokenUtils {
     public Boolean validateToken(String token) {
         SecretKey key = Keys.hmacShaKeyFor(signingKey.getBytes(StandardCharsets.UTF_8));
         try {
+            //Jwts Заводской класс полезен для создания экземпляров интерфейсов JWT.
+            //Использование этого заводского класса может быть хорошей альтернативой тесной увязке кода с классами
+
+            //parserBuilder() Возвращает новый экземпляр JwtParserBuilder, который можно настроить для создания неизменяемого/безопасного для потоков JwtParser.
+            //Возврат:
+            //новый экземпляр JwtParser, который можно настроить, создает неизменяемый/защищенный
             Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()

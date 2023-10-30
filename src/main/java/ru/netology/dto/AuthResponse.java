@@ -23,6 +23,10 @@ public class AuthResponse {
      *   @JsonProperty("Type")
      *   public String type;
      *  }
+     *
+     *  "AuthResponse": {
+     *      "auth-token" : "auth-token"
+     *  }
      */
 
     @JsonProperty("auth-token")
