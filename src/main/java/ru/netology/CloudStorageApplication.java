@@ -31,8 +31,8 @@ public class CloudStorageApplication {
      * Чтобы сообщить Spring Boot о нашем интерфейсе commandlineRunner, мы можем либо реализовать его и добавить аннотацию @Component над классом,
      * либо создать его bean-компонент с помощью @bean.
      */
-    @Bean
-    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
-        return args -> users.save(new User("user", encoder.encode("password"), "USER"));
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
+//        return args -> users.save(new User("user", encoder.encode("password"), "USER"));
+//    }
 }

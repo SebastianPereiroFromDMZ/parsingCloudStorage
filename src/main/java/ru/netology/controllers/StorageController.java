@@ -30,10 +30,17 @@ public class StorageController {
         return ResponseEntity.ok(storageService.getFiles(authToken, limit));
     }
 
+    //ResponseEntity<?>, где под ? понимается любой Java объект.
+    //Конструктор ResponseEntity позволяет перегружать этот объект, добавляя в него не только наш возвращаемый тип,
+    //но и статус, чтобы фронтенд мог понимать, что именно пошло не так.
     @PostMapping("/file")
     public ResponseEntity<?> uploadFile(@RequestHeader("auth-token") String authToken,
                                         @RequestParam("filename") String filename,
                                         @RequestBody MultipartFile file) throws IOException {
+        //MultipartFile Представление выгруженного файла, полученного в многопортовом запросе.
+        //Содержимое файла хранится в памяти или временно на диске.
+        //В любом случае пользователь отвечает за копирование содержимого файла в сеансовый уровень или постоянное хранилище,
+        //как и при необходимости. Временное хранилище будет очищено по окончании обработки запроса.
         storageService.uploadFile(authToken, filename, file);
         return ResponseEntity.ok(HttpStatus.OK);
     }

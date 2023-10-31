@@ -25,7 +25,13 @@ public class StorageService {
     }
 
     public List<FileResponse> getFiles(String authToken, int limit) {
+        //.substring Возвращает строку, которая является подстрокой этой строки.
+        //Подстрока начинается с символа в указанном индексе и продолжается до конца этой строки.
+        //Примеры: «несчастливый». подстрока (2) возвращает «счастливый»
+
+        //Нижний метод возвращает юзера по токену
         String owner = jwtTokenUtils.getUsernameFromToken(authToken.substring(7));
+        //Возвращает список файлов по юзеру
         Optional<List<File>> fileList = fileRepository.findAllByOwner(owner);
         return fileList.get().stream().map(fr -> new FileResponse(fr.getFilename(), fr.getSize()))
                 .limit(limit)
@@ -33,7 +39,9 @@ public class StorageService {
     }
 
     public void uploadFile(String authToken, String filename, MultipartFile file) throws IOException {
+        //получаем владельца по токену
         String owner = jwtTokenUtils.getUsernameFromToken(authToken.substring(7));
+        //сохраняем файл в бд вместе с информацией о его владельце: owner
         fileRepository.save(new File(filename, file.getContentType(), file.getSize(), file.getBytes(), owner));
     }
 

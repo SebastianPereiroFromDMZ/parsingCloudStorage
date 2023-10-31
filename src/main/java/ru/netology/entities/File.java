@@ -19,6 +19,7 @@ public class File {
     private String type;
     private Long size;
     @Lob
+    //Аннотация @Lob указывает, что база данных должна хранить свойство как большой объект .
     private byte[] content;
     private String owner;
 

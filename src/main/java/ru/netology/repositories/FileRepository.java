@@ -13,6 +13,17 @@ import java.util.Optional;
 @Repository
 public interface FileRepository extends JpaRepository<File, Long> {
 
+    //@Query:
+    //Чтобы определить SQL для выполнения метода репозитория данных Spring,
+    //можно аннотировать метод аннотацией @ Query - его атрибут value содержит JPQL или SQL для выполнения.
+
+    //@Param:
+    //По умолчанию в JPA данных пружины используется привязка параметров на основе положения,
+    //как было показано в предыдущих учебных пособиях. Мы также можем использовать именованный параметр с аннотацией @ Param,
+    //чтобы дать параметру метода конкретное имя и привязать имя в запросе.
+    //Это упрощает рефакторинг кода в случае необходимости добавления/удаления дополнительных параметров.
+    //
+    //@ Param работает как с @ Query, так и с @ NamedQuery.
     @Query(value = "select f from File f where f.owner = :owner")
     Optional<List<File>> findAllByOwner(@Param("owner") String owner);
 
