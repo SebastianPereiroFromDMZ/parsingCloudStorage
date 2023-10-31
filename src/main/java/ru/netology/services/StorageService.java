@@ -46,17 +46,23 @@ public class StorageService {
     }
 
     public void deleteFile(String authToken, String filename) {
+        //получаем юзера из токена
         String owner = jwtTokenUtils.getUsernameFromToken(authToken.substring(7));
+        //удаляем файл
         fileRepository.removeByFilenameAndOwner(filename, owner);
     }
 
     public File downloadFile(String authToken, String filename) {
+        //получаем юзера из токена
         String owner = jwtTokenUtils.getUsernameFromToken(authToken.substring(7));
+        //получаем файл
         return fileRepository.findByFilenameAndOwner(filename, owner);
     }
 
     public void renameFile(String authToken, String filename, String newFilename) {
+        //получаем юзера из токена
         String owner = jwtTokenUtils.getUsernameFromToken(authToken.substring(7));
+        //переименовываем файл
         fileRepository.renameFile(filename, newFilename, owner);
     }
 }

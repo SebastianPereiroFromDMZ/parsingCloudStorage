@@ -27,11 +27,15 @@ public interface FileRepository extends JpaRepository<File, Long> {
     @Query(value = "select f from File f where f.owner = :owner")
     Optional<List<File>> findAllByOwner(@Param("owner") String owner);
 
+    //кастомный запрос
     File findByFilenameAndOwner(String filename, String owner);
 
+    //кастомный запрос
     void removeByFilenameAndOwner(String filename, String owner);
 
     @Modifying
+    //Аннотация @Modifying используется для улучшения аннотации @Query,
+    //чтобы мы могли выполнять не только запросы SELECT , но также запросы INSERT , UPDATE , DELETE и даже DDL .
     @Query("update File f set f.filename = :newName where f.filename = :filename and f.owner = :owner")
     void renameFile(@Param("filename") String filename, @Param("newName") String newFilename, @Param("owner") String owner);
 }

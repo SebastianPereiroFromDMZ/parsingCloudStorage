@@ -65,8 +65,39 @@ public class StorageController {
                                                @RequestParam("filename") String filename) {
         File file = storageService.downloadFile(authToken, filename);
         return ResponseEntity.ok()
+                //.contentType Задайте тип носителя тела, как указано в заголовке Content-Type.
+                //Парамы:
+                //contentType - тип содержимого
+                //Возврат:
+                //этот строитель
+                //См. также:
+                //StartHeaders.setContentType (MediaType)
+
+                //MediaType Подкласс MiveType, который добавляет поддержку параметров качества, определенных в спецификации HTTP.
+
+                //.parseMediaType Разберите данную строку на один тип MediaType.
+                //Парамы:
+                //mediaType - строка для синтаксического анализа
+                //Возврат:
+                //тип носителя
+                //Броски:
+                //InvalidMediaTypeException - если значение типа носителя не может быть проанализировано
                 .contentType(MediaType.parseMediaType(file.getType()))
+                //.header Добавьте данное значение одиночного заголовка под данным именем.
+                //Парамы:
+                //heeyName - имя заголовка heeyValues - значение (значения) заголовка
+                //Возврат:
+                //это здание
+
+                //HttpHeaders.CONTENT_DISPOSITION Имя поля заголовка HTTP Content-Disposition.
+                //См. также:
+                //RFC 6266
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                //.body Задайте тело объекта ответа и возвращает его.
+                //Парамы:
+                //body - тело объекта ответа
+                //Возврат:
+                //построенный объект ответа
                 .body(file.getContent());
     }
 }

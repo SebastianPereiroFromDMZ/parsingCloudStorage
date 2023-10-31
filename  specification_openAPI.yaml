@@ -17,13 +17,14 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - login
+                - password
               properties:
                 login:
                   type: string
-                  required: true
                 password:
                   type: string
-                  required: true
       responses:
         '200':
           description: Success authorization
@@ -113,13 +114,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
         '500':
-          description: Error delet file
+          description: Error delete file
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
     get:
-      description: Dowload file from cloud
+      description: Download file from cloud
       parameters:
         - in: header
           name: auth-token
@@ -221,15 +222,16 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - filename
+                  - size
                 properties:
                   filename:
                     type: string
                     description: File name
-                    required: true
                   size:
                     type: integer
                     description: File size in bytes
-                    required: true
         '400':
           description: Error input data
           content:
