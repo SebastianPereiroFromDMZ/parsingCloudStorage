@@ -11,3 +11,6 @@
 
 # Реализация JWT в Spring Boot
 <https://struchkov.dev/blog/ru/jwt-implementation-in-spring/>
+
+# Тестирование приложения на Spring Boot
+<https://javarush.com/quests/lectures/questspringboot.level01.lecture10>
