@@ -35,7 +35,9 @@ class CloudStorageApplicationIntegrationTests {
     private final String PASSWORD = "password";
 
     @Test
+    //Тест на неприсутствующего юзера в базе данных
     void loginUserUnauthenticated() throws Exception {
+        //создаем юзера несуществубщего(с неправильным логином)
         AuthRequest authRequest = new AuthRequest(BAD_LOGIN, PASSWORD);
         //создаем Post-запрос по адресу в LOGIN_PATH, предварительно преобразовав в JSON-строку.
         mvc.perform(post(LOGIN_PATH)
@@ -47,6 +49,7 @@ class CloudStorageApplicationIntegrationTests {
     }
 
     @Test
+    //тест на существующего юзера
     void loginUserAuthenticated() throws Exception {
         AuthRequest authRequest = new AuthRequest(LOGIN, PASSWORD);
         mvc.perform(post(LOGIN_PATH)
