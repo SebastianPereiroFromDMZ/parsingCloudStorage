@@ -25,6 +25,8 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class StorageServiceTest {
+
+    //@InjectMocks что то на подобие того что говорим в этот класс который помечен @InjectMocks будем встраивать заглушки помоченные @Mock
     @InjectMocks
     private StorageService storageService;
     @Mock
