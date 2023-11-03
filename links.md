@@ -14,3 +14,6 @@
 
 # Тестирование приложения на Spring Boot
 <https://javarush.com/quests/lectures/questspringboot.level01.lecture10>
+
+# Руководство по UUID в Java
+<https://codegym.cc/groups/posts/guide-to-uuid-in-java#discussion>

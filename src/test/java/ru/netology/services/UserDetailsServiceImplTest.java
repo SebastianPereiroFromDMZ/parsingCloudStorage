@@ -28,6 +28,7 @@ public class UserDetailsServiceImplTest {
 
     @Test
     void loadUserByUsernameTest() {
+        //при вызове userRepository.findByUsername(USERNAME)) возвратится willReturn(Optional.of(user));
         given(userRepository.findByUsername(USERNAME)).willReturn(Optional.of(user));
         UserDetails userDetails = userDetailsService.loadUserByUsername(USERNAME);
         assertEquals(securityUser.getPassword(), userDetails.getPassword());
